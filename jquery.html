@@ -7,7 +7,27 @@
     <title>jQuery</title>
     <link rel="shortcut icon" href="#" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
-      <!-------引入jQuery函式庫------->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <style>
+        .title {
+            border: 1px solid #000;
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+        }
+
+        ul li {
+            margin: 5px 5px;
+            padding: 3px;
+            border: 1px solid #eee;
+            text-align: center;
+        }
+
+        ul li:hover {
+            border: 1px solid rgb(141, 216, 151);
+            background-color: rgb(164, 221, 231);
+        }
+    </style>
 </head>
 <body>
     <h1 class="header">jQuery</h1>
@@ -24,20 +44,45 @@
     * 3.建立回呼函式(call back function)來處理回應時的各項行為
     * 4.建立錯誤處理
     ********************************************************/
-     
+    
     //利用$.ajax()方法傳送請求並取得回應
-    /* $.ajax(
-      {
-        url:'',
-        type:'',
-        success:,
-        error:,
-        complete:
-      }
-    ) */   
+    let data_url = "https://kktix.com/events.json";
+    // $.ajax(
+    //   {
+    //     url: data_url,
+    //     type:'GET',
+    //     success: (res) => {
+    //       console.log(res);
+    //       $(".title").html(res.title);
+    //       let list = '';
+    //       res.entry.forEach((e, i) => {
+    //           // console.log(e.title);
+    //           list += `<li>
+    //                   <div>${e.title}</div>
+    //                   <div>${e.content}</div>
+    //                   <div>${e.summary}</div>
+    //                   </li>`; 
+    //       })
+    //       $("ul").append(list);
+    //     }
+    //   }
+    // )   
 
     
     //利用$.get()方法傳送請求並取得回應
-
+    $.get(data_url, (res) => {
+      console.log(res)
+      $(".title").html(res.title);
+          let list = '';
+          res.entry.forEach((e, i) => {
+              // console.log(e.title);
+              list += `<li>
+                      <div>${e.title}</div>
+                      <div>${e.content}</div>
+                      <div>${e.summary}</div>
+                      </li>`;
+          })
+          $("ul").append(list);
+    })
 
   </script>
