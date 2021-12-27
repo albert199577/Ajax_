@@ -7,6 +7,27 @@
     <title>Fetch</title>
     <link rel="shortcut icon" href="#" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+     <style>
+        .title {
+            border: 1px solid #000;
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+        }
+
+        ul li {
+            margin: 5px 5px;
+            padding: 3px;
+            border: 1px solid #eee;
+            text-align: center;
+        }
+
+        ul li:hover {
+            border: 1px solid rgb(141, 216, 151);
+            background-color: rgb(164, 221, 231);
+        }
+    </style>
 </head>
 <body>
     <h1 class="header">Fetch</h1>
@@ -25,8 +46,24 @@
     ********************************************************/
 
     //建立FETCH請求及實質內容
-
-
+    fetch('https://kktix.com/events.json', {method: 'GET'})
+    .then(function(res) {
+        return res.json()
+    })
+    .then(function(data) {
+        console.log(data)
+        $(".title").html(data.title);
+        let list = '';
+        data.entry.forEach((e, i) => {
+            // console.log(e.title);
+            list += `<li>
+                    <div>${e.title}</div>
+                    <div>${e.content}</div>
+                    <div>${e.summary}</div>
+                    </li>`; 
+        })
+        $("ul").append(list);
+    })
     //建立回呼函式(call back function)來處理回應時的各項行為
 
 
