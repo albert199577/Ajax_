@@ -33,28 +33,33 @@
 ************************************/
 function list() {
   $.get("api/list.php", (list) => {
+    //後端處理資料
+    console.log(list)
+    $("#classlist").html(list);
+    
+
+    //前端處理資料
     // console.log(list)
-    let classlist = JSON.parse(list);
-    console.log(classlist)
-    let card;
-    classlist.forEach((c, i) => {
-      card = `
-        <div class="card m-2">
-          <div class="card-body">
-            <h5 class="card-title">${c.班級}</h5>
-            <p class="card-text">${c.人數}</p>
+    // let classlist = JSON.parse(list);
+    // console.log(classlist)
+    // let card;
+    // classlist.forEach((req) => {
+    //   card = `
+    //     <div class="card m-2">
+    //       <div class="card-body">
+    //         <h5 class="card-title">${req.班級}</h5>
+    //         <p class="card-text">${req.人數}</p>
             
-          </div>
-        </div>
-              `
-    $("#classlist").append(card);
+    //       </div>
+    //     </div>
+    //           `
+    // $("#classlist").append(card);
 
     });
 
-  })
+  // })
 }
 list();
-
 //新增資料的函式
 function create(){
 
